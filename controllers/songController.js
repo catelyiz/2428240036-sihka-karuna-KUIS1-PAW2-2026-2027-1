@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import Song from "../models/songModel.js";
 
-// @desc    Create a new song
-// @route   POST /api/songs
 export const createSong = async (req, res) => {
   try {
     const { judul_lagu, penyanyi, durasi_detik } = req.body;
@@ -30,8 +28,6 @@ export const createSong = async (req, res) => {
   }
 };
 
-// @desc    Get all songs
-// @route   GET /api/songs
 export const getAllSongs = async (req, res) => {
   try {
     const songs = await Song.find();
@@ -50,8 +46,6 @@ export const getAllSongs = async (req, res) => {
   }
 };
 
-// @desc    Get a single song by ID
-// @route   GET /api/songs/:id
 export const getSongById = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -83,8 +77,6 @@ export const getSongById = async (req, res) => {
   }
 };
 
-// @desc    Update a song by ID
-// @route   PUT /api/songs/:id
 export const updateSong = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -120,8 +112,6 @@ export const updateSong = async (req, res) => {
   }
 };
 
-// @desc    Delete a song by ID
-// @route   DELETE /api/songs/:id
 export const deleteSong = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
