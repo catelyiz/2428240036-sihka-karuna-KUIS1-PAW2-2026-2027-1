@@ -1,0 +1,16 @@
+{
+  "name": "manajemen-data-lagu",
+  "version": "1.0.0",
+  "description": "REST API untuk manajemen data lagu menggunakan Express.js dan MongoDB",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "dotenv": "^16.4.5"
+  }
+}
