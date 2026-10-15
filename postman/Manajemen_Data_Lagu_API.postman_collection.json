@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Manajemen Data Lagu API",
+		"description": "Collection untuk menguji CRUD API Manajemen Data Lagu - KUIS 1 PAW2 2026/2027",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "song_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Create Song",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"if (response.data && response.data._id) {",
+							"    pm.collectionVariables.set('song_id', response.data._id);",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"judul_lagu\": \"Bohemian Rhapsody\",\n    \"penyanyi\": \"Queen\",\n    \"durasi_detik\": 354\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/songs",
+					"host": ["{{base_url}}"],
+					"path": ["api", "songs"]
+				},
+				"description": "Membuat data lagu baru ke dalam database MongoDB."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Songs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/songs",
+					"host": ["{{base_url}}"],
+					"path": ["api", "songs"]
+				},
+				"description": "Mengambil seluruh data lagu dari database MongoDB."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Song By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/songs/{{song_id}}",
+					"host": ["{{base_url}}"],
+					"path": ["api", "songs", "{{song_id}}"]
+				},
+				"description": "Mengambil satu data lagu berdasarkan ID MongoDB."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Song",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"judul_lagu\": \"Bohemian Rhapsody (Remastered)\",\n    \"penyanyi\": \"Queen\",\n    \"durasi_detik\": 360\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/songs/{{song_id}}",
+					"host": ["{{base_url}}"],
+					"path": ["api", "songs", "{{song_id}}"]
+				},
+				"description": "Memperbarui data lagu yang sudah ada berdasarkan ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Song",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/songs/{{song_id}}",
+					"host": ["{{base_url}}"],
+					"path": ["api", "songs", "{{song_id}}"]
+				},
+				"description": "Menghapus data lagu berdasarkan ID."
+			},
+			"response": []
+		}
+	]
+}
